@@ -1,8 +1,7 @@
-const express = require("express")
+const express = require("express");
 const router = express.Router();
+const CategoryController = require("../controllers/CategoryController.js");
 
-router.get("/", function(req, res){
-    res.send('Entrei em category.')
-});
+router.get("/", CategoryController);
 
 module.exports = router;
