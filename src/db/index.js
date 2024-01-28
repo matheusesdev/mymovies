@@ -5,7 +5,7 @@ dotenv.config();
 
 let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = process.env;
 
-const db = new Pool({
+const db = newPool({
   host: PGHOST,
   database: PGDATABASE,
   user: PGUSER,

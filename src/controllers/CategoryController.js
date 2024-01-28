@@ -17,9 +17,20 @@ const CategoryController = {
     });
   },
 
-  create(req, res) {
+  async create(req, res) {
     const { name, description } = req.body;
-    // Aqui entraria a regra de persistência do Banco de Dados.
+    try {
+      const newCategory = await db.query(
+        "INSERT INTO category (name, description) VALUES  ($1, $2) RETURNIN *"[
+          (name, description)
+        ]
+      );
+
+      res.json(newCategory.rows[0]);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+
     res.status(201).json({
       id: Number.MAX_SAFE_INTEGER,
       name: name,
