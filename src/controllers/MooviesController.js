@@ -1,9 +1,9 @@
 const db = require("../db");
 
-const MovieController = {
+const MooviesController = {
   async findAll(req, res) {
     try {
-      const movie = await db.query(`
+      const moovies = await db.query(`
         SELECT 
           m.*,
           c.name AS category_name,
@@ -12,7 +12,7 @@ const MovieController = {
         INNER JOIN category c ON c.id = m.category_id
       `);
 
-      res.json(movie.rows);
+      res.json(moovies.rows);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -22,7 +22,7 @@ const MovieController = {
     const { id } = req.params;
 
     try {
-      const movie = await db.query(
+      const moovies = await db.query(
         `
         SELECT 
           m.*,
@@ -35,8 +35,8 @@ const MovieController = {
         [id]
       );
 
-      if (movie.rows.length > 0) {
-        res.json(movie.rows[0]);
+      if (moovies.rows.length > 0) {
+        res.json(moovies.rows[0]);
       } else {
         res.status(404).json({ error: "Filme não encontrado" });
       }
@@ -83,4 +83,4 @@ const MovieController = {
   },
 };
 
-module.exports = MovieController;
+module.exports = MooviesController;
