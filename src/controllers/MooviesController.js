@@ -8,7 +8,7 @@ const MooviesController = {
           m.*,
           c.name AS category_name,
           c.description AS category_description
-        FROM moovie m 
+        FROM moovie m
         INNER JOIN category c ON c.id = m.category_id
       `);
 
@@ -28,7 +28,7 @@ const MooviesController = {
           m.*,
           c.name AS category_name,
           c.description AS category_description
-        FROM moovie m 
+        FROM moovie m
         INNER JOIN category c ON c.id = m.category_id
         WHERE m.id = $1
       `,
